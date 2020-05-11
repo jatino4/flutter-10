@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
       Uri.encodeFull(url),
       headers: {"Accept": "application/json"},
     );
+    url != null ? Image.network(url) : Container();
     List data = jsonDecode(response.body)["results"];
     setState(() {
       usersData = data;
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Randon User"),
+        title: Text("Random User"),
       ),
       body: Container(
         child: Center(
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 70.0,
                                   width: 70.0,
                                   fit: BoxFit.contain,
+                                  
                                   image: NetworkImage(
                                       usersData[index]["picture"]["thumbnai"])),
                             ),
